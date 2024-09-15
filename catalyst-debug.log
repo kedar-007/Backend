@@ -225,3 +225,213 @@ change of controllers\admin.js in dms_function detected. Preparing your function
 change of controllers\admin.js in dms_function detected. Preparing your function, please wait...
 [info] [2024-09-15T09:49:04.844Z] : ℹ AdvancedIO[dms_function]: ready!
 [info] [2024-09-15T09:49:04.844Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[debug] [2024-09-15T10:48:50.227Z] : > refreshing access token <
+[debug] [2024-09-15T10:48:50.232Z] : >>>> HTTP REQUEST : POST https://accounts.zoho.in/oauth/v2/token 
+<request body omitted>
+
+[debug] [2024-09-15T10:48:50.812Z] : <<<< HTTP RESPONSE : 200
+Response Headers: {"server":"ZGS","date":"Sun, 15 Sep 2024 10:48:50 GMT","content-type":"application/json;charset=UTF-8","content-length":"1913","connection":"keep-alive","set-cookie":["zalb_6e73717622=dea4bb29906843a6fbdf3bd5c0e43d1d; Path=/","iamcsr=0864f619-690c-4f97-bf4f-13d14700db3e;path=/;SameSite=None;Secure;priority=high","_zcsr_tmp=0864f619-690c-4f97-bf4f-13d14700db3e;path=/;SameSite=Strict;Secure;priority=high"],"cache-control":"no-store","x-content-type-options":"nosniff","content-security-policy":"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.zohocdn.com https://*.zoho.com https://*.zoho.eu https://*.zoho.com.cn https://*.zoho.com.au https://*.zoho.jp https://*.zoho.uk https://*.zoho.sa https://*.zohocloud.ca; report-uri https://logsapi.zoho.in/csplog?service=accounts;","pragma":"no-cache","x-frame-options":"SAMEORIGIN","vary":"accept-encoding","content-language":"en-US","strict-transport-security":"max-age=63072000"}
+
+[info] [2024-09-15T10:54:24.230Z] : 
+change of routes\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T10:54:26.308Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T10:54:26.309Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T10:57:59.702Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T10:58:02.003Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T10:58:02.004Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:15:57.557Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:15:59.995Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:15:59.995Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:16:02.511Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:16:04.769Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:16:04.770Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:16:05.921Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:16:08.416Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:16:08.417Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:16:09.434Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:16:11.510Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:16:11.511Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:16:27.795Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:16:31.352Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:16:31.353Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:16:32.359Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:16:34.793Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:16:34.794Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:16:35.802Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:16:37.988Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:16:37.988Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:16:38.992Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:16:41.405Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:16:41.405Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:16:42.418Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:16:44.646Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:16:44.646Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:19:52.344Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:19:54.817Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:19:54.818Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:19:58.425Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:20:00.953Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:20:00.953Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:20:03.086Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:20:05.943Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:20:05.944Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:20:27.960Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:20:31.074Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:20:31.075Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:20:32.094Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:20:34.752Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:20:34.753Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:20:35.764Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:20:38.332Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:20:38.333Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:20:39.341Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:20:41.572Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:20:41.572Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:20:42.734Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:20:45.565Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:20:45.566Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:20:46.773Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:20:49.707Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:20:49.707Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:20:52.333Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:20:55.883Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:20:55.884Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:21:50.537Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:21:52.838Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:21:52.839Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:21:53.845Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:21:56.876Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:21:56.877Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:22:01.399Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:22:03.788Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:22:03.789Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:22:04.803Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:22:07.328Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:22:07.329Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:22:08.336Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:22:10.892Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:22:10.892Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:22:11.897Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:22:14.213Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:22:14.213Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:22:22.611Z] : 
+change of routes\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:22:24.901Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:22:24.901Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:22:27.562Z] : 
+change of routes\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:22:29.775Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:22:29.775Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:22:30.786Z] : 
+change of routes\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:22:32.929Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:22:32.930Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:22:36.404Z] : 
+change of routes\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:22:38.785Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:22:38.788Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:22:41.836Z] : 
+change of routes\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:22:43.986Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:22:43.987Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:22:44.991Z] : 
+change of routes\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:22:47.552Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:22:47.553Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:22:49.116Z] : 
+change of routes\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:22:51.517Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:22:51.518Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:42:00.449Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:42:02.767Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:42:02.768Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:42:11.678Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:42:14.099Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:42:14.099Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:42:17.893Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:42:20.518Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:42:20.520Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:42:33.628Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:42:36.102Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:42:36.102Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:42:37.109Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:42:39.478Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:42:39.478Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:42:56.191Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:43:00.126Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:43:00.126Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:43:07.305Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:43:09.535Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:43:09.537Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:43:11.461Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:43:13.778Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:43:13.779Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:47:32.171Z] : 
+change of routes\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:47:34.888Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:47:34.888Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:49:38.076Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:49:41.115Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:49:41.115Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:53:51.683Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:53:53.998Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:53:53.998Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:54:16.614Z] : 
+change of routes\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:54:18.550Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:54:18.550Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[debug] [2024-09-15T11:55:48.235Z] : > refreshing access token <
+[debug] [2024-09-15T11:55:48.243Z] : >>>> HTTP REQUEST : POST https://accounts.zoho.in/oauth/v2/token 
+<request body omitted>
+
+[debug] [2024-09-15T11:55:48.866Z] : <<<< HTTP RESPONSE : 200
+Response Headers: {"server":"ZGS","date":"Sun, 15 Sep 2024 11:55:48 GMT","content-type":"application/json;charset=UTF-8","content-length":"1913","connection":"keep-alive","set-cookie":["zalb_6e73717622=13e67ac15bc4d3ece130966123511df7; Path=/","iamcsr=b4c35235-31bc-491b-a72d-3e340cd0614e;path=/;SameSite=None;Secure;priority=high","_zcsr_tmp=b4c35235-31bc-491b-a72d-3e340cd0614e;path=/;SameSite=Strict;Secure;priority=high"],"cache-control":"no-store","x-content-type-options":"nosniff","content-security-policy":"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.zohocdn.com https://*.zoho.com https://*.zoho.eu https://*.zoho.com.cn https://*.zoho.com.au https://*.zoho.jp https://*.zoho.uk https://*.zoho.sa https://*.zohocloud.ca; report-uri https://logsapi.zoho.in/csplog?service=accounts;","pragma":"no-cache","x-frame-options":"SAMEORIGIN","vary":"accept-encoding","content-language":"en-US","strict-transport-security":"max-age=63072000"}
+
+[info] [2024-09-15T11:56:33.069Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:56:35.377Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:56:35.377Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:56:53.541Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:56:55.930Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:56:55.931Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T11:56:56.942Z] : 
+change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T11:56:58.937Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T11:56:58.938Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/

@@ -1,486 +1,420 @@
+const catalyst = require("zcatalyst-sdk-node");
 
-exports.getPatientFromHospital = {
-  // Get all patient fromn particular hospital
-  all: async (capp, doctorId, fallback = undefined) => {
-    let items = await capp
-      .zcql()
-      .executeZCQLQuery(`SELECT * FROM Patients WHERE doctor_id = ${doctorId}`)
-      .catch(() => null);
+// Fetch all dealers
+exports.getAllDealers = async (capp) => {
+  const zcql = capp.zcql();
+  const query = `SELECT * FROM Dealers`;
+  const queryResp = await zcql.executeZCQLQuery(query).catch(() => null);
 
-    if (items == null || items == undefined) {
-      return fallback;
-    }
-    const data = items.map((item) => item.Patients);
-    // console.log("Doctor Data",data);
-    return items.map((item) => item[patients.table_name]);
-  },
+  if (queryResp == null) {
+    throw new Error("Failed to fetch dealers");
+  }
 
-  //Get particular Paitent from hospital
-  patient: async (capp, doctorId, patientId) => {
-    const zcql = capp.zcql();
-    const query = `SELECT * FROM ${patients.table_name} WHERE doctor_id = ${doctorId} AND ROWID = ${patientId}`;
-    const queryResp = await zcql.executeZCQLQuery(query).catch(() => null);
-    if (queryResp == null || queryResp.length === 0) {
-      throw new Error("Patient not found");
-    }
-    return queryResp[0];
-  },
-  updatePatient: async (capp, doctorId, patientId, updateData) => {
-    console.log("Updating Patient with ID:", patientId);
-    console.log("Update data:", updateData);
-
-    const datastore = capp.datastore();
-    const table = datastore.table("Patients");
-
-    // Construct a JSON Object with the updated row details
-    let updatedRowData = {
-      ROWID: patientId,
-      ...updateData,
-    };
-
-    try {
-      // Use Table Meta Object to update a single row using ROWID which returns a promise
-      let rowPromise = table.updateRow(updatedRowData);
-
-      // Wait for the update operation to complete
-      let updatedRow = await rowPromise;
-
-      // console.log("Row updated successfully:", updatedRow);
-      return updatedRow;
-    } catch (error) {
-      console.error("Failed to update the row:", error);
-      throw new Error("Failed to update hospital");
-    }
-  },
+  return queryResp.map((item) => item.Dealers);
 };
 
-exports.getAppointmentsFromHospitals = {
-  all: async (capp, doctorId, fallback = undefined) => {
-    let items = await capp
-      .zcql()
-      .executeZCQLQuery(
-        `SELECT * FROM Appointments WHERE doctor_id = ${doctorId}`
-      )
-      .catch(() => null);
+// Fetch dealer by ID
+exports.getDealerById = async (capp, dealerId) => {
+  const zcql = capp.zcql();
+  const query = `SELECT * FROM Dealers WHERE ROWID='${dealerId}'`;
+  const queryResp = await zcql.executeZCQLQuery(query).catch(() => null);
 
-    if (items == null || items == undefined) {
-      return fallback;
-    }
-    // console.log("Here is the appointment data",items);
-    return items.map((item) => item.Appointments);
-  },
+  if (queryResp == null || queryResp.length === 0) {
+    throw new Error("Dealer not found");
+  }
 
-  //Get particular appointment from hospital
-  appointment: async (capp, doctorId, appointmentId) => {
-    const zcql = capp.zcql();
-    const query = `SELECT * FROM ${appointments.table_name} WHERE doctor_id = ${doctorId} AND ROWID = ${appointmentId}`;
-    const queryResp = await zcql.executeZCQLQuery(query).catch(() => null);
-    if (queryResp == null || queryResp.length === 0) {
-      throw new Error("Patient not found");
-    }
-    return queryResp[0];
-  },
-
-  updateAppointment: async (capp, appointmentId, updateData) => {
-    const datastore = capp.datastore();
-    const table = datastore.table("Appointments");
-    //   console.log("table acess",table);
-
-    // Construct a JSON Object with the updated row details
-    let UpdatedAptrowData = {
-      ROWID: appointmentId,
-      ...updateData,
-    };
-
-    console.log(
-      "Here is the appointment data we got from the frontend client",
-      UpdatedAptrowData
-    );
-    //   console.log("here is the row data",UpdatedAptrowData);
-    try {
-      // Use Table Meta Object to update a single row using ROWID which returns a promise
-      let rowPromise = table.updateRow(UpdatedAptrowData);
-
-      // Wait for the update operation to complete
-      let updatedRow = await rowPromise;
-
-      // console.log("Row updated successfully:", updatedRow);
-      return updatedRow;
-    } catch (error) {
-      console.error("Failed to update the row:", error);
-      throw new Error("Failed to update Appointment");
-    }
-  },
+  return queryResp[0].Dealers;
 };
 
-exports.patientHistory = {
-  // Get all treatment history
-  all: async (capp, fallback = undefined) => {
-    let history = await capp
-      .zcql()
-      .executeZCQLQuery(`SELECT * FROM Treatements`)
-      .catch(() => null);
+// Update dealer by ID
+exports.updateDealer = async (capp, dealerId, updateData) => {
+  const datastore = capp.datastore();
+  const table = datastore.table("Dealers");
 
-    if (history == null || history == undefined) {
-      return fallback;
-    }
-    return history.map((history) => history["Treatements"]);
-  },
+  let updatedRowData = {
+    ROWID: dealerId,
+    ...updateData,
+  };
 
-  // Get history of a particular patient
-  getPatientHistory: async (capp, patientId, fallback = undefined) => {
-    let history = await capp
-      .zcql()
-      .executeZCQLQuery(
-        `SELECT * FROM Treatements WHERE patient_id = ${patientId}`
-      )
-      .catch(() => null);
-
-    if (history == null || history == undefined) {
-      return fallback;
-    }
-    return history.map((history) => history["Treatements"]);
-  },
-
-  // Add treatment to a patient
-  AddTreatement: async (capp, patientId, data) => {
-    console.log(data);
-    const { doctorName, hospitalName, treatmentDetails } = data;
-
-    const rowData = {
-      patient_id: patientId,
-      doctor_name: doctorName,
-      hospital_name: hospitalName,
-      treatement_details: treatmentDetails,
-    };
-
-    console.log("Row Data", rowData);
-
-    try {
-      const row = await capp
-        .datastore()
-        .table("Treatements")
-        .insertRow(rowData);
-      return row;
-    } catch (error) {
-      console.error("Failed to add treatment:", error);
-      throw new Error("Failed to add treatment");
-    }
-  },
-
-  // Edit a treatment record
-  EditTreatement: async (capp, doctorId, patientId, treatmentId, data) => {
-    const rowData = {
-      ...data,
-      patient_id: patientId,
-      doctor_id: doctorId,
-    };
-
-    try {
-      const row = await capp
-        .datastore()
-        .table("Treatements")
-        .updateRow(treatmentId, rowData);
-      return row;
-    } catch (error) {
-      console.error("Failed to update treatment:", error);
-      throw new Error("Failed to update treatment");
-    }
-  },
-
-  // Delete a treatment record
-  DeleteTreatement: async (capp, doctorId, patientId, treatmentId) => {
-    try {
-      const result = await capp
-        .datastore()
-        .table("Treatements")
-        .deleteRow(treatmentId);
-      return { success: true, message: "Treatment deleted successfully" };
-    } catch (error) {
-      console.error("Failed to delete treatment:", error);
-      throw new Error("Failed to delete treatment");
-    }
-  },
-
-  AllTreatements: async (capp, name, fallback = undefined) => {
-    console.log("Name in the backend controller function", name);
-    let history = await capp
-      .zcql()
-      .executeZCQLQuery(
-        `SELECT *FROM Treatements WHERE doctor_name = '${name}'`
-      )
-      .catch(() => null);
-
-    console.log("History", history);
-
-    if (history == null || history == undefined) {
-      return fallback;
-    }
-    return history.map((history) => history["Treatements"]);
-  },
+  try {
+    let rowPromise = table.updateRow(updatedRowData);
+    let updatedRow = await rowPromise;
+    return updatedRow;
+  } catch (error) {
+    console.error("Failed to update the row:", error);
+    throw new Error("Failed to update dealer");
+  }
 };
 
-//controllers for the dashboards apis
+// Fetch all products
+exports.getAllProducts = async (capp) => {
+  const zcql = capp.zcql();
+  const query = `SELECT * FROM Products`;
+  const queryResp = await zcql.executeZCQLQuery(query).catch(() => null);
 
-exports.dashboardData = {
-  GetAppointmenttCount: async (capp, doctorId) => {
-    console.log("data", doctorId);
+  if (queryResp == null) {
+    throw new Error("Failed to fetch Products");
+  }
 
-    let count = await capp
-      .zcql()
-      .executeZCQLQuery(
-        `SELECT COUNT(ROWID) FROM Appointments WHERE doctor_id = '${doctorId}';`
-      )
-      .catch(() => null);
-
-    console.log(count);
-
-    if (count == null || count == undefined) {
-      return fallback;
-    }
-
-    const total = count.map((count) => count["Appointments"].ROWID);
-
-    return total[0];
-  },
-
-  getTreatements: async (capp, fallback = undefined) => {
-    let treatement = await capp
-      .zcql()
-      .executeZCQLQuery(`SELECT * FROM Services`)
-      .catch(() => null);
-
-    if (treatement == null || treatement == undefined) {
-      return fallback;
-    }
-
-    // console.log("history", treatement);
-    return treatement.map((treatement) => treatement["Services"]);
-  },
-
-  getMedicines: async (capp, fallback = undefined) => {
-    let medicines = await capp
-      .zcql()
-      .executeZCQLQuery(`SELECT * FROM Medicines`)
-      .catch(() => null);
-
-    if (medicines == null || medicines == undefined) {
-      return fallback;
-    }
-
-    // console.log("medicines", medicines);
-    return medicines.map((medicines) => medicines["Medicines"]);
-  },
+  return queryResp.map((item) => item.Products);
 };
 
-// adding updating and deleting services/Treatements and medicines
-exports.ServicesMedicines = {
-  AddServices: async (capp, data) => {
-    // Check if data is an array and contains multiple services
-    let serviceData = [];
-    if (!Array.isArray(data)) {
-      // If data is not an array, convert it to an array containing a single object
-      serviceData = [data];
+// Fetch product by ID
+exports.getProductById = async (capp, id) => {
+  const zcql = capp.zcql();
+  const query = `SELECT * FROM Products WHERE ROWID = ${id}`;
+  const queryResp = await zcql.executeZCQLQuery(query).catch(() => null);
+
+  if (queryResp == null) {
+    throw new Error("Failed to fetch Products");
+  }
+
+  return queryResp.map((item) => item.Products);
+};
+
+// Delete the product
+exports.deleteProduct = async (capp, id) => {
+  const datastore = capp.datastore();
+  const table = datastore.table("Products");
+  try {
+    // Delete the row
+    const res = await table.deleteRow(id);
+    // Return the deleted row data
+    return res;
+  } catch (error) {
+    console.error("Failed to delete Products:", error);
+    throw new Error("Failed to delete Products");
+  }
+};
+
+// Add Products (Bulk and Single)
+exports.addProducts = async (capp, productData) => {
+  // Check if productData is an array or a single object
+  if (!Array.isArray(productData)) {
+    if (typeof productData === "object" && productData !== null) {
+      productData = [productData];
     } else {
-      serviceData = data;
+      throw new Error("Invalid productData format");
     }
+  }
 
-    // Prepare an array of rows to insert
-    const rowsToInsert = serviceData.map((service) => {
-      const { Category, ServiceName, description, Cost } = service;
+  if (productData.length === 0) {
+    throw new Error("Empty productData");
+  }
 
-      return {
-        ServiceName,
-        Category,
-        description,
-        Cost,
-      };
-    });
+  const processedData = productData.map((product) => {
+    const { ProductName, Category, Price, Description } = product;
+    return { ProductName, Category, Price, Description };
+  });
 
-    try {
-      // Insert each row into the table
-      const insertedRows = await Promise.all(
-        rowsToInsert.map(async (rowData) => {
-          return await capp.datastore().table("Services").insertRow(rowData);
-        })
-      );
-      console.log("Here are the inserted rows", insertedRows);
+  const datastore = capp.datastore();
+  const table = datastore.table("Products");
 
-      // If successful, return 200 with a success message and inserted rows
-      return {
-        status: 200,
-        message: "Services created successfully",
-        data: insertedRows,
-      };
-    } catch (error) {
-      console.error("Failed to add services:", error);
-
-      // If an error occurs, return 500 with an error message
-      return {
-        status: 500,
-        message: "Failed to add services",
-        error: error.message,
-      };
-    }
-  },
-
-  // Add multiple medicines
-  AddMedicines: async (capp, data) => {
-    // Check if data is an array or a single object
-    if (!Array.isArray(data)) {
-      // If it's a single object, convert it to an array with one item
-      if (typeof data === "object" && data !== null) {
-        data = [data];
-      } else {
-        throw new Error("Invalid medicines data format");
-      }
-    }
-
-    // Ensure data is now an array
-    if (data.length === 0) {
-      throw new Error("Empty medicines data");
-    }
-
-    // Log the data for debugging
-    console.log(data);
-
-    // Prepare an array of rows to insert
-    const rowsToInsert = data.map((medicine) => {
-      const { Category, medicine_name, Description } = medicine;
-
-      return {
-        medicine_name,
-        Category,
-        Description,
-      };
-    });
-
-    // Access datastore
-    const datastore = capp.datastore();
-    const table = datastore.table("Medicines");
-
-    try {
-      // Insert multiple rows in a single operation
-      const rows = await table.insertRows(rowsToInsert);
-
-      // Log the inserted rows for debugging
-      console.log("Inserted Rows: ", rows);
-
-      // Return success status and message
-      return {
-        status: 200,
-        message: "Medicines added successfully",
-        data: rows,
-      };
-    } catch (error) {
-      console.error("Failed to add medicines:", error);
-      throw new Error("Failed to add medicines");
-    }
-  },
-  //getting all treatement types
-  getTreatements: async (capp, fallback = undefined) => {
-    let treatement = await capp
-      .zcql()
-      .executeZCQLQuery(`SELECT * FROM Services`)
-      .catch(() => null);
-
-    if (treatement == null || treatement == undefined) {
-      return fallback;
-    }
-
-    // console.log("history", treatement);
-    return treatement.map((treatement) => treatement["Services"]);
-  },
-
-  getMedicines: async (capp, fallback = undefined) => {
-    let medicines = await capp
-      .zcql()
-      .executeZCQLQuery(`SELECT * FROM Medicines`)
-      .catch(() => null);
-
-    if (medicines == null || medicines == undefined) {
-      return fallback;
-    }
-
-    // console.log("medicines", medicines);
-    return medicines.map((medicines) => medicines["Medicines"]);
-  },
-
-  // Edit a treatement/service
-  updateTreatment: async (capp, treatmentId, updatedData) => {
-    console.log("Updated data", updatedData);
-    const rowData = {
-      ROWID: treatmentId,
-      ...updatedData,
-    };
-    try {
-      const row = await capp.datastore().table("Services").updateRow(rowData); // Pass updatedData directly
-      console.log(row);
-      return row;
-    } catch (error) {
-      console.error("Failed to update treatment/service:", error);
-      throw new Error("Failed to update treatment/service");
-    }
-  },
-
-  //Updating the medicine record
-  updateMedicine: async (capp, medicineId, updatedData) => {
-    console.log("Updated data", updatedData);
-    const rowData = {
-      ROWID: medicineId,
-      ...updatedData,
-    };
-    try {
-      const row = await capp.datastore().table("Medicines").updateRow(rowData); // Pass updatedData directly
-      console.log(row);
-      return row;
-    } catch (error) {
-      console.error("Failed to update Medicines:", error);
-      throw new Error("Failed to update Medicines");
-    }
-  },
-
-  //Deleting service/treatement
-  DeleteService: async (capp, treatmentId) => {
-    try {
-      const result = await capp
-        .datastore()
-        .table("Services")
-        .deleteRow(treatmentId);
-      return { success: true, message: "Treatment deleted successfully" };
-    } catch (error) {
-      console.error("Failed to delete treatment:", error);
-      throw new Error("Failed to delete treatment");
-    }
-  },
-
-  //Delete Medicine
-
-  DeleteMedicine: async (capp, medicineId) => {
-    console.log("Medicine Id", medicineId);
-    try {
-      const result = await capp
-        .datastore()
-        .table("Medicines")
-        .deleteRow(medicineId);
-      return { success: true, message: "Medicine deleted successfully" };
-    } catch (error) {
-      console.error("Failed to delete Medicine:", error);
-      throw new Error("Failed to delete Medicine");
-    }
-  },
-  //Get all bills related to that doctor
-  GetAllBills: async (capp,id,fallback = undefined) => {
-    let bills = await capp
-      .zcql()
-      .executeZCQLQuery(`SELECT * FROM Bills WHERE doctor_id = ${id}`)
-      .catch(() => null);
-
-    if (bills == null || bills == undefined) {
-      return fallback;
-    }
-
-    // console.log("medicines", medicines);
-    return bills.map((bills) => bills["Bills"]);
-  },
+  try {
+    const insertPromise = table.insertRows(processedData);
+    const rows = await insertPromise;
+    return rows;
+  } catch (error) {
+    console.error("Failed to create products:", error);
+    throw new Error("Failed to create products");
+  }
 };
+
+// Update product
+exports.updateProduct = async (capp, productId, updateData) => {
+  const datastore = capp.datastore();
+  const table = datastore.table("Products");
+
+  let updatedRowData = {
+    ROWID: productId,
+    ...updateData,
+  };
+
+  try {
+    let rowPromise = table.updateRow(updatedRowData);
+    let updatedRow = await rowPromise;
+    return updatedRow;
+  } catch (error) {
+    console.error("Failed to update the row:", error);
+    throw new Error("Failed to update Product");
+  }
+};
+
+// Fetch all orders related to a dealer
+exports.getOrdersByDealer = async (capp, dealerId) => {
+  const zcql = capp.zcql();
+  const query = `SELECT * FROM Orders WHERE DealerID = '${dealerId}'`;
+  const queryResp = await zcql.executeZCQLQuery(query).catch(() => null);
+
+  if (queryResp == null) {
+    throw new Error("Failed to fetch orders");
+  }
+
+  return queryResp.map((item) => item["Orders"]);
+};
+
+// Add Orders (Bulk and Single)
+exports.addOrders = async (capp, orderData) => {
+  if (!Array.isArray(orderData)) {
+    if (typeof orderData === "object" && orderData !== null) {
+      orderData = [orderData];
+    } else {
+      throw new Error("Invalid orderData format");
+    }
+  }
+
+  if (orderData.length === 0) {
+    throw new Error("Empty orderData");
+  }
+
+  const processedData = orderData.map((order) => {
+    const { DealerID, OrderDate, TotalAmount, OrderStatus, Products } = order;
+    return {
+      DealerID,
+      OrderDate,
+      TotalAmount,
+      OrderStatus,
+      Products: JSON.stringify(Products),
+    };
+  });
+
+  const datastore = capp.datastore();
+  const table = datastore.table("Orders");
+
+  try {
+    const insertPromise = table.insertRows(processedData);
+    const rows = await insertPromise;
+    return rows;
+  } catch (error) {
+    console.error("Failed to create orders:", error);
+    throw new Error("Failed to create orders");
+  }
+};
+
+// Update order
+exports.updateOrder = async (capp, orderId, updateData) => {
+  const datastore = capp.datastore();
+  const table = datastore.table("Orders");
+
+  let updatedRowData = {
+    ROWID: orderId,
+    ...updateData,
+  };
+
+  try {
+    let rowPromise = table.updateRow(updatedRowData);
+    let updatedRow = await rowPromise;
+    return updatedRow;
+  } catch (error) {
+    console.error("Failed to update the row:", error);
+    throw new Error("Failed to update order");
+  }
+};
+
+// Get order by ID
+exports.getOrderById = async (capp, id) => {
+  const zcql = capp.zcql();
+  const query = `SELECT * FROM Orders WHERE ROWID = ${id}`;
+  const queryResp = await zcql.executeZCQLQuery(query).catch(() => null);
+
+  if (queryResp == null) {
+    throw new Error("Failed to fetch orders");
+  }
+
+  return queryResp.map((item) => item["Orders"]);
+};
+
+// Delete the order
+exports.deleteOrder = async (capp, id) => {
+  const datastore = capp.datastore();
+  const table = datastore.table("Orders");
+  try {
+    const res = await table.deleteRow(id);
+    return res;
+  } catch (error) {
+    console.error("Failed to delete order:", error);
+    throw new Error("Failed to delete order");
+  }
+};
+
+// Add Technicians
+exports.addTechnician = async (capp, dealerId, technicianData) => {
+  const { TechnicianName, Email, Phone, specialization, address } =
+    technicianData;
+
+  const rowData = {
+    DealerID: dealerId,
+    TechnicianName,
+    Email,
+    Phone,
+    specialization,
+    address,
+  };
+
+  const table = capp.datastore().table("Technicians");
+
+  try {
+    const row = await table.insertRow(rowData);
+    return row;
+  } catch (error) {
+    console.error("Failed to add technician:", error);
+    throw new Error("Failed to add technician");
+  }
+};
+
+// Fetch all technicians related to a dealer
+exports.getTechniciansByDealer = async (capp, dealerId) => {
+  const zcql = capp.zcql();
+  const query = `SELECT * FROM Technicians WHERE DealerID = '${dealerId}'`;
+  const queryResp = await zcql.executeZCQLQuery(query).catch(() => null);
+
+  if (queryResp == null) {
+    throw new Error("Failed to fetch technicians");
+  }
+
+  return queryResp.map((item) => item.Technicians);
+};
+
+// Fetch all customers
+exports.getAllCustomers = async (capp, id) => {
+  const zcql = capp.zcql();
+  const query = `SELECT * FROM Customers WHERE DealerID = ${id}`;
+  const queryResp = await zcql.executeZCQLQuery(query).catch(() => null);
+
+  if (queryResp == null) {
+    throw new Error("Failed to fetch customers");
+  }
+
+  return queryResp.map((item) => item.Customers);
+};
+
+// Add a customer
+exports.addCustomer = async (capp, customerData) => {
+  const { name, phone, email, address, ProductID, DealerID } = customerData;
+
+  const rowData = {
+    name,
+    phone,
+    email,
+    address,
+    ProductID,
+    DealerID,
+  };
+
+  const table = capp.datastore().table("Customers");
+
+  try {
+    const row = await table.insertRow(rowData);
+    return row;
+  } catch (error) {
+    console.error("Failed to add customer:", error);
+    throw new Error("Failed to add customer");
+  }
+};
+
+// Fetch all service requests by technician
+exports.getServiceRequestsByTechnician = async (capp, id) => {
+  const zcql = capp.zcql();
+  const query = `SELECT * FROM ServiceRequests WHERE TechnicianID = ${id}`;
+  const queryResp = await zcql.executeZCQLQuery(query).catch(() => null);
+
+  if (queryResp == null) {
+    throw new Error("Failed to fetch ServiceRequests");
+  }
+
+  return queryResp.map((item) => item.ServiceRequests);
+};
+
+// Fetch all inventory items related to a dealer
+exports.getInventoryByDealer = async (capp, dealerId) => {
+  const zcql = capp.zcql();
+  const query = `SELECT * FROM Inventory WHERE DealerID = '${dealerId}'`;
+  const queryResp = await zcql.executeZCQLQuery(query).catch(() => null);
+
+  if (queryResp == null) {
+    throw new Error("Failed to fetch inventory");
+  }
+
+  return queryResp.map((item) => item.Inventory);
+};
+
+// Update inventory for a dealer
+exports.updateInventory = async (capp, dealerId, inventoryData) => {
+  const datastore = capp.datastore();
+  const table = datastore.table("Inventory");
+
+  // Check if inventoryData is an array or a single object
+  if (!Array.isArray(inventoryData)) {
+    // If it's a single object, convert it to an array with one item
+    if (typeof inventoryData === "object" && inventoryData !== null) {
+      inventoryData = [inventoryData];
+    } else {
+      throw new Error("Invalid inventoryData format");
+    }
+  }
+
+  // Ensure inventoryData is now an array
+  if (inventoryData.length === 0) {
+    throw new Error("Empty inventoryData");
+  }
+
+  // Process each inventory data object
+  const processedData = inventoryData.map((inventory) => {
+    const { ProductID, StockQuantity } = inventory;
+
+    return {
+      DealerID: dealerId,
+      ProductID,
+      StockQuantity,
+    };
+  });
+
+  try {
+    // Insert or update rows into the datastore
+    const insertPromise = table.insertRows(processedData);
+    const rows = await insertPromise;
+
+    // Return the inserted/updated rows
+    return rows;
+  } catch (error) {
+    console.error("Failed to update inventory:", error);
+    throw new Error("Failed to update inventory");
+  }
+};
+
+
+// Add Inventory for a Dealer
+exports.addInventory = async (capp, dealerId, inventoryData) => {
+  // Check if inventoryData is an array
+  if (!Array.isArray(inventoryData)) {
+    throw new Error("Invalid inventoryData format");
+  }
+
+  const datastore = capp.datastore();
+  const table = datastore.table("Inventory"); // Assuming your table name is "Inventory"
+  
+  try {
+    // Process each inventory item
+    const addedRows = await Promise.all(inventoryData.map(async (item) => {
+      const { ProductID, StockQuantity} = item;
+
+      // Create inventory data
+      const inventoryRowData = {
+        DealerID: dealerId,
+        ProductID,
+        StockQuantity
+      };
+
+      // Insert new inventory row
+      return await table.insertRow(inventoryRowData);
+    }));
+
+    // Return the newly added inventory rows
+    return addedRows;
+  } catch (error) {
+    console.error("Failed to add inventory:", error);
+    throw new Error("Failed to add inventory");
+  }
+};
+
+module.exports = exports;
