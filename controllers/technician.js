@@ -1,283 +1,185 @@
+const catalyst = require("zcatalyst-sdk-node");
 
-exports.getPatientForReceptionist = {
-  // Get all patient fromn particular hospital
-  all: async (capp, hospitalId, fallback = undefined) => {
-    console.log("Hospital Id", hospitalId);
-    let items = await capp
-      .zcql()
-      .executeZCQLQuery(
-        `SELECT * FROM Patients WHERE hospital_id = ${hospitalId}`
-      )
-      .catch(() => null);
+// Get all pending services assigned to the technician
+exports.getPendingServices = async (capp, technicianId) => {
+  let items = await capp
+    .zcql()
+    .executeZCQLQuery(
+      `SELECT * FROM ServiceRequests WHERE technician_id = ${technicianId} AND status = 'Pending'`
+    )
+    .catch(() => null);
 
-    if (items == null || items == undefined) {
-      return fallback;
-    }
-    return items.map((item) => item["Patients"]);
-  },
-  patient: async (capp, hospitalId, patientId) => {
-    const zcql = capp.zcql();
-    const query = `SELECT * FROM ${patients.table_name} WHERE hospital_id = ${hospitalId} AND ROWID = ${patientId}`;
-    const queryResp = await zcql.executeZCQLQuery(query).catch(() => null);
-    if (queryResp == null || queryResp.length === 0) {
-      throw new Error("Patient not found");
-    }
-    return queryResp[0];
-  },
-  updatePatient: async (capp, hospitalId, patientId, updateData) => {
-    // console.log("Updating Patient with ID:", patientId);
-    // console.log("Update data:", updateData);
-
-    const datastore = capp.datastore();
-    const table = datastore.table("Patients");
-
-    // Construct a JSON Object with the updated row details
-    let updatedRowData = {
-      ROWID: patientId,
-      ...updateData,
-    };
-
-    try {
-      // Use Table Meta Object to update a single row using ROWID which returns a promise
-      let rowPromise = table.updateRow(updatedRowData);
-
-      // Wait for the update operation to complete
-      let updatedRow = await rowPromise;
-
-      // console.log("Row updated successfully:", updatedRow);
-      return updatedRow;
-    } catch (error) {
-      console.error("Failed to update the row:", error);
-      throw new Error("Failed to update hospital");
-    }
-  },
-  createPatient: async (capp, patientData) => {
-    // console.log("Here patientData", patientData);
-    const {
-      patient_name,
-      phone,
-      address,
-      date_of_birth,
-      gender,
-      hospital_id,
-      doctor_id,
-      date_of_admission,
-    } = patientData;
-
-    const rowData = {
-      patient_name,
-      address,
-      phone,
-      date_of_birth,
-      gender,
-      hospital_id,
-      doctor_id,
-      date_of_admission,
-    };
-    // console.log("here is the row data", rowData);
-    try {
-      const row = await capp.datastore().table("Patients").insertRow(rowData);
-      return row;
-    } catch (error) {
-      console.error("Failed to create patient:", error);
-      throw new Error("Failed to create patient");
-    }
-  },
+  if (items == null || items == undefined) {
+    return [];
+  }
+  return items.map((item) => item["ServiceRequests"]);
 };
 
-exports.getAppointmentsForReceptionist = {
-  all: async (capp, hospitalId, fallback = undefined) => {
-    let items = await capp
-      .zcql()
-      .executeZCQLQuery(
-        `SELECT * FROM ${appointments.table_name} WHERE hospital_id = ${hospitalId}`
-      )
-      .catch(() => null);
+// Get all inventory items accessible by the technician
+exports.getInventoryForTechnician = async (capp, technicianId) => {
+  // Assuming there's a TechnicianInventory table linking technicians to inventory items
+  let items = await capp
+    .zcql()
+    .executeZCQLQuery(
+      `SELECT * FROM Inventory WHERE technician_id = ${technicianId}`
+    )
+    .catch(() => null);
 
-    if (items == null || items == undefined) {
-      return fallback;
-    }
-    return items.map((item) => item[appointments.table_name]);
-  },
-
-  //Get particular appointment from hospital
-  appointment: async (capp, hospitalId, appointmentId) => {
-    const zcql = capp.zcql();
-    const query = `SELECT * FROM ${appointments.table_name} WHERE hospital_id = ${hospitalId} AND ROWID = ${appointmentId}`;
-    const queryResp = await zcql.executeZCQLQuery(query).catch(() => null);
-    if (queryResp == null || queryResp.length === 0) {
-      throw new Error("Patient not found");
-    }
-    return queryResp[0];
-  },
-
-  updateAppointment: async (capp, hospitalId, appointmentId, updateData) => {
-    // console.log("Updating Patient with ID:", appointmentId);
-    // console.log("Update data:", updateData);
-
-    const datastore = capp.datastore();
-    const table = datastore.table("Appointments");
-
-    // Construct a JSON Object with the updated row details
-    let updatedRowData = {
-      ROWID: appointmentId,
-      ...updateData,
-    };
-
-    try {
-      // Use Table Meta Object to update a single row using ROWID which returns a promise
-      let rowPromise = table.updateRow(updatedRowData);
-
-      // Wait for the update operation to complete
-      let updatedRow = await rowPromise;
-
-      // console.log("Row updated successfully:", updatedRow);
-      return updatedRow;
-    } catch (error) {
-      console.error("Failed to update the row:", error);
-      throw new Error("Failed to update Appointment");
-    }
-  },
+  if (items == null || items == undefined) {
+    return [];
+  }
+  return items.map((item) => item["Inventory"]);
 };
 
-exports.BillsForReceptionist = {
-  AddBill: async (capp, hospitalId, receptionistId, data) => {
-    const {
-      patient_name,
-      patient_id,
-      hospital_name,
-      doctor_name,
-      ServiceDetails,
-      Amount,
-      phone,
-      Billing_Date,
-      Status,
-      PaymentMethod,
-      doctor_id,
-      date_of_admission,
-    } = data;
+// Get service history for the technician
+exports.getServiceHistory = async (capp, technicianId) => {
+  let history = await capp
+    .zcql()
+    .executeZCQLQuery(
+      `SELECT * FROM ServiceRequests WHERE technician_id = ${technicianId} AND status = 'Completed'`
+    )
+    .catch(() => null);
 
-    const rowData = {
-      patient_name,
-      patient_id,
-      hospital_name,
-      hospital_id: hospitalId,
-      doctor_name,
-      ServiceDetails,
-      Amount,
-      phone,
-      Billing_Date,
-      Status,
-      PaymentMethod,
-      doctor_id,
-      date_of_admission,
-      receptionist_id: receptionistId,
-    };
-
-    try {
-      const row = await capp.datastore().table("Bills").insertRow(rowData);
-      return row;
-    } catch (error) {
-      console.error("Failed to create bill:", error);
-      throw new Error("Failed to create bill");
-    }
-  },
-
-  EditBill: async (capp, hospitalId, receptionistId, billId, data) => {
-    const rowData = {
-      ...data,
-      hospital_id: hospitalId,
-      receptionist_id: receptionistId,
-    };
-
-    try {
-      const row = await capp
-        .datastore()
-        .table("Bills")
-        .updateRow(billId, rowData);
-      return row;
-    } catch (error) {
-      console.error("Failed to update bill:", error);
-      throw new Error("Failed to update bill");
-    }
-  },
-
-  DeleteBill: async (capp, billId) => {
-    try {
-      const result = await capp.datastore().table("Bills").deleteRow(billId);
-      return { success: true, message: "Bill deleted successfully" };
-    } catch (error) {
-      console.error("Failed to delete bill:", error);
-      throw new Error("Failed to delete bill");
-    }
-  },
-
-  all: async (capp, hospitalId, fallback = undefined) => {
-    let items = await capp
-      .zcql()
-      .executeZCQLQuery(
-        `SELECT * FROM ${appointments.table_name} WHERE hospital_id = ${hospitalId}`
-      )
-      .catch(() => null);
-
-    if (items == null || items == undefined) {
-      return fallback;
-    }
-    return items.map((item) => item[appointments.table_name]);
-  },
-  getDoctor: async (capp, doctor_id, fallback = undefined) => {
-    let doctor = await capp
-      .zcql()
-      .executeZCQLQuery(`SELECT * FROM Doctors WHERE ROWID =${doctor_id}`)
-      .catch(() => null);
-    console.log(doctor);
-
-    if (doctor == null || doctor == undefined) {
-      return fallback;
-    }
-    return doctor.map((doctor) => doctor["Doctors"]);
-  },
-
-  getReceptionst: async (capp, userId, fallback = undefined) => {
-    console.log(capp);
-    let receptionist = await capp
-      .zcql()
-      .executeZCQLQuery(`SELECT * FROM Receptionist WHERE user_id = ${userId}`)
-      .catch(() => null);
-
-    console.log("here is the receptionist", receptionist);
-
-    if (receptionist == null || receptionist == undefined) {
-      return fallback;
-    }
-    return receptionist.map((item) => item["Receptionist"]);
-  },
-
-  getBills: async (capp, id, fallback = undefined) => {
-    console.log("Got the id of the user", id);
-    let bills = await capp
-      .zcql()
-      .executeZCQLQuery(`SELECT * FROM Bills WHERE receptionist_id = ${id}`)
-      .catch(() => null);
-
-    console.log("All Bills", bills);
-
-    if (bills == null || bills == undefined) {
-      return fallback;
-    }
-    return bills.map((item) => item["Bills"]);
-  },
-  //Get hospital of that perticular receptionist
-  getHospital: async (capp, id, fallback = undefined) => {
-    let hospital = await capp
-      .zcql()
-      .executeZCQLQuery(`SELECT * FROM Hospitals WHERE ROWID =${id}`)
-      .catch(() => null);
-    console.log(hospital);
-
-    if (hospital == null || hospital == undefined) {
-      return fallback;
-    }
-    return hospital.map((hospital) => hospital["Hospitals"]);
-  },
+  if (history == null || history == undefined) {
+    return [];
+  }
+  return history.map((item) => item["ServiceRequests"]);
 };
+
+// Update the status of a service request
+exports.updateServiceStatus = async (
+  capp,
+  technicianId,
+  serviceId,
+  updateData
+) => {
+  const datastore = capp.datastore();
+  const table = datastore.table("ServiceRequests");
+
+  // Construct a JSON Object with the updated row details
+  let updatedRowData = {
+    ROWID: serviceId,
+    technician_id: technicianId, // Ensure the technician ID matches
+    ...updateData,
+  };
+
+  try {
+    // Use Table Meta Object to update a single row using ROWID which returns a promise
+    let rowPromise = table.updateRow(updatedRowData);
+
+    // Wait for the update operation to complete
+    let updatedRow = await rowPromise;
+    return updatedRow;
+  } catch (error) {
+    console.error("Failed to update the service:", error);
+    throw new Error("Failed to update the service");
+  }
+};
+
+// Add service history for the technician
+exports.addServiceHistory = async (capp, technicianId, serviceData) => {
+  const datastore = capp.datastore();
+  const table = datastore.table("ServiceHistory");
+
+  // Extract data
+  const {
+    DealerID,
+    ServiceDescription,
+    Status,
+    ProductID,
+    SpareParts,
+    TotalTime,
+  } = serviceData;
+
+  // Construct a JSON Object with the service history details
+  let rowData = {
+    TechnicianID: technicianId,
+    DealerID,
+    ServiceDescription,
+    Status,
+    ProductID,
+    SpareParts,
+    TotalTime,
+  };
+
+  try {
+    // Insert a new row
+    let rowPromise = table.insertRow(rowData);
+
+    // Wait for the insertion to complete
+    let insertedRow = await rowPromise;
+    return insertedRow;
+  } catch (error) {
+    console.error("Failed to add service history:", error);
+    throw new Error("Failed to add service history");
+  }
+};
+
+// Get completed services for the technician
+exports.getCompletedServices = async (capp, technicianId) => {
+  let services = await capp
+    .zcql()
+    .executeZCQLQuery(
+      `SELECT * FROM ServiceRequests WHERE technician_id = ${technicianId} AND status = 'Completed'`
+    )
+    .catch(() => null);
+
+  if (services == null || services == undefined) {
+    return [];
+  }
+  return services.map((item) => item["ServiceRequests"]);
+};
+
+// Get a specific service by ID for the technician
+exports.getServiceById = async (capp, technicianId, serviceId) => {
+  const zcql = capp.zcql();
+  const query = `SELECT * FROM ServiceRequests WHERE ROWID = ${serviceId} AND technician_id = ${technicianId}`;
+  const queryResp = await zcql.executeZCQLQuery(query).catch(() => null);
+
+  if (queryResp == null || queryResp.length === 0) {
+    throw new Error("Service not found");
+  }
+  return queryResp[0]["ServiceRequests"];
+};
+
+exports.addSpareParts = async (capp, sparePartData) => {
+  const datastore = capp.datastore();
+  const table = datastore.table("SpareParts");
+
+  // Check if the data is an array (bulk insert) or a single object
+  if (!Array.isArray(sparePartData)) {
+    sparePartData = [sparePartData]; // Convert to an array for uniform handling
+  }
+
+  // Construct an array of row data for each spare part
+  const rowsToInsert = sparePartData.map((part) => ({
+    ProductID: part.ProductID,
+    PartName: part.PartName,
+    Description: part.Description,
+    Cost: part.Cost
+  }));
+
+  try {
+    // Insert rows
+    let rowsPromise = table.insertRows(rowsToInsert);
+    let insertedRows = await rowsPromise;
+    return insertedRows;
+  } catch (error) {
+    console.error("Failed to add spare parts:", error);
+    throw new Error("Failed to add spare parts");
+  }
+};
+
+exports.getAllSpareParts = async (capp) => {
+  let items = await capp
+    .zcql()
+    .executeZCQLQuery(`SELECT * FROM SpareParts`)
+    .catch(() => null);
+
+  if (items == null || items == undefined) {
+    throw new Error("Failed to fetch spare parts");
+  }
+  return items.map((item) => item["SpareParts"]);
+};
+
+module.exports = exports;

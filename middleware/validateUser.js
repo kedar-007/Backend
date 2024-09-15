@@ -53,7 +53,9 @@ const validateUser = async (req, res, next) => {
       if (role === "DEALER") {
         // Fetch the ROWID from the Dealers table
         const dealerQuery = `SELECT ROWID FROM Dealers WHERE email = '${email}'`;
-        const dealerQueryResp = await zcql.executeZCQLQuery(dealerQuery).catch(() => null);
+        const dealerQueryResp = await zcql
+          .executeZCQLQuery(dealerQuery)
+          .catch(() => null);
 
         if (dealerQueryResp == null || dealerQueryResp.length === 0) {
           console.log("Dealer not found.");
@@ -74,7 +76,9 @@ const validateUser = async (req, res, next) => {
       } else if (role === "TECHNICIAN") {
         // Fetch the ROWID from the Technicians table
         const technicianQuery = `SELECT ROWID, DealerID FROM Technicians WHERE email = '${email}'`;
-        const technicianQueryResp = await zcql.executeZCQLQuery(technicianQuery).catch(() => null);
+        const technicianQueryResp = await zcql
+          .executeZCQLQuery(technicianQuery)
+          .catch(() => null);
 
         if (technicianQueryResp == null || technicianQueryResp.length === 0) {
           console.log("Technician not found.");
@@ -94,15 +98,22 @@ const validateUser = async (req, res, next) => {
           email: user.Users.email,
           userName: user.Users.name || "User",
         };
+      } else if (role === "ADMIN") {
+        // Handle the ADMIN role
+        req.user = {
+          userId: userId,
+          role: "ADMIN",
+          email: user.Users.email,
+          userName: user.Users.name || "Admin",
+        };
+      } else {
+        console.log("Invalid role provided.");
+        return res.status(400).json({ error: "Invalid role" });
       }
     } else {
-      // If the role is neither DEALER nor TECHNICIAN, set user data with just userId
-      req.user = {
-        userId: userId,
-        role: "USER",
-        email: user.Users.email,
-        userName: user.Users.name || "User",
-      };
+      // If the role is not set, treat as an undefined role
+      console.log("Role not provided.");
+      return res.status(400).json({ error: "Role not provided" });
     }
 
     console.log(`User authenticated: ${user.Users.name}`);

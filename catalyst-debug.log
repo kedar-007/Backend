@@ -435,3 +435,94 @@ change of controllers\dealer.js in dms_function detected. Preparing your functio
 change of controllers\dealer.js in dms_function detected. Preparing your function, please wait...
 [info] [2024-09-15T11:56:58.937Z] : ℹ AdvancedIO[dms_function]: ready!
 [info] [2024-09-15T11:56:58.938Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T12:26:17.739Z] : 
+change of routes\technician.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T12:26:20.331Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T12:26:20.332Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T12:26:30.144Z] : 
+change of controllers\technician.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T12:26:32.605Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T12:26:32.605Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T12:27:33.321Z] : 
+change of routes\technician.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T12:27:36.805Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T12:27:36.806Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T12:27:37.818Z] : 
+change of controllers\technician.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T12:27:39.836Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T12:27:39.837Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T12:29:04.164Z] : 
+change of routes\technician.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T12:29:06.186Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T12:29:06.187Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T12:29:13.961Z] : 
+change of routes\technician.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T12:29:15.895Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T12:29:15.896Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T12:29:19.764Z] : 
+change of routes\technician.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T12:29:21.654Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T12:29:21.655Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T12:49:46.070Z] : 
+change of routes\technician.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T12:49:49.588Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T12:49:49.589Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T12:51:36.327Z] : 
+change of controllers\technician.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T12:51:39.098Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T12:51:39.099Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T12:58:40.047Z] : 
+change of controllers\technician.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T12:58:42.434Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T12:58:42.435Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T12:59:00.659Z] : 
+change of controllers\technician.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T12:59:03.132Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T12:59:03.132Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T12:59:04.143Z] : 
+change of controllers\technician.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T12:59:06.398Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T12:59:06.399Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T12:59:07.406Z] : 
+change of controllers\technician.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T12:59:10.277Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T12:59:10.277Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T12:59:34.377Z] : 
+change of routes\technician.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T12:59:36.708Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T12:59:36.709Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T12:59:37.713Z] : 
+change of routes\technician.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T12:59:40.137Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T12:59:40.137Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T12:59:41.142Z] : 
+change of routes\technician.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T12:59:43.514Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T12:59:43.515Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T12:59:44.520Z] : 
+change of routes\technician.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T12:59:46.877Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T12:59:46.878Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T12:59:47.889Z] : 
+change of routes\technician.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T12:59:50.708Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T12:59:50.708Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T12:59:51.718Z] : 
+change of routes\technician.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T12:59:54.001Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T12:59:54.002Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T13:02:15.584Z] : 
+change of routes\technician.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T13:02:17.895Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T13:02:17.896Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[info] [2024-09-15T13:02:18.911Z] : 
+change of routes\technician.js in dms_function detected. Preparing your function, please wait...
+[info] [2024-09-15T13:02:21.186Z] : ℹ AdvancedIO[dms_function]: ready!
+[info] [2024-09-15T13:02:21.187Z] : ℹ AdvancedIO[dms_function]: http://localhost:3000/server/dms_function/
+[debug] [2024-09-15T13:02:48.636Z] : > refreshing access token <
+[debug] [2024-09-15T13:02:48.637Z] : >>>> HTTP REQUEST : POST https://accounts.zoho.in/oauth/v2/token 
+<request body omitted>
+
+[debug] [2024-09-15T13:02:48.805Z] : <<<< HTTP RESPONSE : 200
+Response Headers: {"server":"ZGS","date":"Sun, 15 Sep 2024 13:02:48 GMT","content-type":"application/json;charset=UTF-8","content-length":"1913","connection":"keep-alive","set-cookie":["zalb_6e73717622=cc36c6f8a6790832246efd66c032e512; Path=/","iamcsr=eba119ab-c26b-473e-b4c2-13ed3ab118f8;path=/;SameSite=None;Secure;priority=high","_zcsr_tmp=eba119ab-c26b-473e-b4c2-13ed3ab118f8;path=/;SameSite=Strict;Secure;priority=high"],"cache-control":"no-store","x-content-type-options":"nosniff","content-security-policy":"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.zohocdn.com https://*.zoho.com https://*.zoho.eu https://*.zoho.com.cn https://*.zoho.com.au https://*.zoho.jp https://*.zoho.uk https://*.zoho.sa https://*.zohocloud.ca; report-uri https://logsapi.zoho.in/csplog?service=accounts;","pragma":"no-cache","x-frame-options":"SAMEORIGIN","vary":"accept-encoding","content-language":"en-US","strict-transport-security":"max-age=63072000"}
+
